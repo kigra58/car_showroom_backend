@@ -1,7 +1,8 @@
 import {Router} from "express";
-import { authRoutes } from "./features/Auth/authRoutes";
+import {authRoute} from "./features/Auth/authRoute"
+import { bookingRoute } from "./features/Booking/bookingRoutes";
 
 export const router= Router();
 
-router.use("/auth",authRoutes);
-router.use("/booking",authRoutes);
+router.use("/auth",authRoute);
+router.use("/booking",bookingRoute);

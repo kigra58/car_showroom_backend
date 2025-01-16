@@ -1,6 +1,6 @@
 import {Router} from "express";
 
-export const bookingRoutes=Router();
+export const bookingRoute=Router();
 
-bookingRoutes.use("/login")
+bookingRoute.use("/booking",);
 

@@ -1,6 +1,7 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// npx prisma generate
 // migrateCommand: npx prisma migrate dev --name init
 // npx prisma db push
 // npx prisma migrate dev --create-only
@@ -16,45 +17,56 @@ datasource db {
 }
 
 model User {
-  id         Int           @id @default(autoincrement())
-  first_name String
-  last_name  String
-  email      String        @unique
-  password   String
-  created_at DateTime      @default(now())
-  updated_at DateTime      @default(now())
-  address    UserAddress[]
+  id           Int           @id @default(autoincrement())
+  first_name   String
+  last_name    String
+  email        String        @unique
+  phone        String        @unique
+  password     String
+  created_at   DateTime      @default(now())
+  updated_at   DateTime      @default(now())
+  account_type String
+  address      UserAddress[]
+  UserPayment  UserPayment[]
 }
-
-
-
 
 model UserAddress {
-  id           Int         @id @default(autoincrement())
-  user_id      Int
-  flat_number  String
-  country      String
-  state        String
-  city         String
-  street       String
-  postal_code  Int
-  address_type AddressType
-  mobile       String      @unique
-  user         User     @relation(fields: [user_id], references: [id])
+  id       Int    @id @default(autoincrement())
+  user_id  Int
+  line1    String
+  landmark String
+  state    String
+  city     String
+  street   String
+  zip_code String
+  user     User   @relation(fields: [user_id], references: [id])
 }
 
+model Car {
+  id               Int    @id @default(autoincrement())
+  model            String
+  color            String
+  manufacture_year String
+}
 
+enum PaymentStatus {
+  initiate
+  success
+  failled
+  pending
+  refund_intiate
+  refunded
+}
 
+model UserPayment {
+  id             Int           @id @default(autoincrement())
+  user_id        Int
+  transaction_id String        @unique
+  method         String
+  status         PaymentStatus // initiate,success,failled ,pending,refund_intiate,refunded
+  amount         Int
+  created_at     DateTime      @default(now())
+  updated_at     DateTime      @default(now())
+  user           User          @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
 
-
-// model UserPayment {
-//   id             Int           @id @default(autoincrement())
-//   user_id        Int
-//   transaction_id String        @unique
-//   method         String
-//   status         PaymentStatus // initiate,success,failled ,pending,refund_intiate,refunded
-//   amount         Int
-//   created_at     DateTime      @default(now())
-//   updated_at     DateTime      @default(now())
-//   user           User          @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-// }

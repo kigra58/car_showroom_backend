@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import {hash,genSalt, compare} from 'bcryptjs'
-import { IAPIResponse } from "../../interfaces";
 import { generateToken } from "../../middleware/generateToken";
+import { IAPIResponse } from "../../interface";
 const prisma = new PrismaClient();
 class AuthService {
   private response: IAPIResponse | undefined;
@@ -29,13 +29,14 @@ class AuthService {
         this.response={
           success:false,
           message:"Unable to register new user",
-          data:[]
         }
       };
        }else{
         this.response={
        success:false,
-       message:"Unable to get payload"
+       message:"Unable to get payload",
+       statusCode:400,
+        data:[]
        }
      };
     } catch (error) {
