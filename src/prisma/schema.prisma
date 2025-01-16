@@ -47,7 +47,28 @@ model Car {
   model            String
   color            String
   manufacture_year String
+  created_at   DateTime      @default(now())
 }
+
+enum BookingStatus {
+  success
+  failled
+  pending
+  refund_intiate
+  refunded
+}
+model Booking {
+  id               Int    @id @default(autoincrement())
+  user_id          Int
+  agent_id         Int
+  address_id       Int
+  car_id           Int
+  down_payment     Int
+  payment_id       Int
+  created_at       DateTime      @default(now())
+  status           BookingStatus
+}
+
 
 enum PaymentStatus {
   initiate
@@ -58,11 +79,20 @@ enum PaymentStatus {
   refunded
 }
 
+
+enum PaymentMode {
+  CASH
+  CREDIT_CARD
+  DEBIT_CARD
+  NET_BANKING
+  UPI
+}
+
 model UserPayment {
   id             Int           @id @default(autoincrement())
   user_id        Int
   transaction_id String        @unique
-  method         String
+  method         PaymentMode
   status         PaymentStatus // initiate,success,failled ,pending,refund_intiate,refunded
   amount         Int
   created_at     DateTime      @default(now())

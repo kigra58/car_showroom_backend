@@ -8,7 +8,8 @@ class AuthService {
   /**
    * SIGNUP
    */
-  async signup({firstName,lastName,email,password}:{firstName:string;lastName:string;email:string,password:string}) {
+  async signup({firstName,lastName,email,password,phone,account_type}:
+    {firstName:string;lastName:string;email:string,password:string,phone:string,account_type:string}) {
     try {
        if(firstName && lastName && email && password){
          const newUser=await prisma.user.create({
@@ -16,7 +17,9 @@ class AuthService {
              first_name:firstName,
              last_name:lastName,
              email,
-             password:await hash(password,await genSalt(10))
+             password:await hash(password,await genSalt(10)),
+             phone,
+             account_type
             }
           });
           if(newUser){

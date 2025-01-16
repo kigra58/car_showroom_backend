@@ -3,7 +3,7 @@ export interface IAPIResponse{
     data?:unknown|[],
     message:string,
     success:boolean,
-    error?:Error,
+    error?:Error|null,
     statusCode?:number
 }
 
@@ -40,4 +40,15 @@ interface ICarDetails{
     model:string,
     color:string,
     manufacture_year:string,
+}
+
+export interface IBooking{
+    user_id:number,
+    car_id:number,
+    agent_id:number,
+    address_id  :number,
+    down_payment:number,
+    payment_mode:string,
+    status:string,
+    booking_date:Date,
 }

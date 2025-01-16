@@ -5,4 +5,4 @@ import { bookingRoute } from "./features/Booking/bookingRoutes";
 export const router= Router();
 
 router.use("/auth",authRoute);
-router.use("/booking",bookingRoute);
+router.use("/new-booking",bookingRoute);
