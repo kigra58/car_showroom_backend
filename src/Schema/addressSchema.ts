@@ -1,0 +1,36 @@
+import mongoose from 'mongoose';
+const Schema = mongoose.Schema;
+
+const UserAddressSchema = new Schema({
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'User', // Reference to the User schema
+    required: true,
+  },
+  line1: {
+    type: String,
+    required: true,
+  },
+  landmark: {
+    type: String,
+  },
+  state: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  street: {
+    type: String,
+  },
+  zip_code: {
+    type: String,
+    required: true,
+  },
+});
+
+const UserAddress = mongoose.model('UserAddress', UserAddressSchema);
+
+module.exports = UserAddress;
