@@ -2,5 +2,5 @@ import {Router} from "express";
 
 export const bookingRoute=Router();
 
-bookingRoute.use("/booking",);
+bookingRoute.post("/new-booking",);
 

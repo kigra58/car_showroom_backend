@@ -42,11 +42,21 @@ interface ICarDetails{
     manufacture_year:string,
 }
 
+
+
+
 export interface IBooking{
     user_id:number,
     car_id:number,
     agent_id:number,
-    address_id  :number,
+    address:{
+        line1:string,
+        landmark:string,
+        city:string,
+        street:string,
+        zip_code:string
+        state:string
+    }
     down_payment:number,
     payment_mode:string,
     status:string,
