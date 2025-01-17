@@ -12,6 +12,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  
   last_name: {
     type: String,
     required: true,
@@ -34,6 +35,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
     enum: USER_ROLE, // Replace with actual account types as needed
+  },
+  profile_image: {
+    type: String,
+    required: false,
   },
   address: [
     {
