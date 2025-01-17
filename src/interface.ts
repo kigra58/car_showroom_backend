@@ -65,12 +65,12 @@ export interface IBooking{
 
 
 export enum PAYMENT_STATUS {
-    initiate,
-    success,
-    failled,
-    pending,
-    refund_intiate,
-    refunded
+    INITIATE,
+    SUCCESS,
+    FAILED,
+    PENDING,
+    REFUND_INITIATE,
+    REFUNDED
 }
 
 export enum PAYMENT_MODE {
@@ -82,10 +82,10 @@ export enum PAYMENT_MODE {
 }
 
 export enum BOOKING_STATUS {
-    success,
-    failled,
-    pending,
-    refund_intiate,
-    refunded,
-    cancelled
-  }
+    SUCCESS,
+    FAILED,
+    PENDING,
+    REFUND_INITIATE,
+    REFUNDED,
+    CANCELLED
+}
