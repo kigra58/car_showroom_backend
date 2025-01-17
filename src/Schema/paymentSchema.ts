@@ -45,6 +45,6 @@ const UserPaymentSchema = new Schema({
   },
 });
 
-const UserAddress = mongoose.model('Payment', UserPaymentSchema);
+export const UserAddress = mongoose.model('Payment', UserPaymentSchema);
 
 module.exports = UserAddress;

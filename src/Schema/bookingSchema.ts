@@ -38,6 +38,6 @@ const BookingSchema = new Schema({
   },
 });
 
-const Booking = mongoose.model('Booking', BookingSchema);
+export const Booking = mongoose.model('Booking', BookingSchema);
 
 module.exports = Booking;

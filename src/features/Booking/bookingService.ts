@@ -1,7 +1,7 @@
 import { IAPIResponse, IBooking } from "../../interface";
-import { PrismaClient } from "@prisma/client";
+import { Address } from "../../Schema/addressSchema";
+import { Booking } from "../../Schema/bookingSchema";
 
-const prisma = new PrismaClient();
 class AuthService {
   private response: IAPIResponse | undefined;
 
@@ -14,15 +14,10 @@ class AuthService {
     }
 
     try {
-      const existAddress = await prisma.userAddress.findFirst({
-        where: {
-          user_id,
-          ...address,
-        },
-      });
+      const existAddress =await Booking.find({ user_id, ...address });
 
       if (!existAddress) {
-        await prisma.userAddress.create({
+        await Address.create({
           data: {
             user_id,
             landmark: address.landmark,
@@ -35,7 +30,7 @@ class AuthService {
         });
       }
 
-      const newBooking = await prisma.booking.create({
+      const newBooking = await Booking.create({
         data: {
           user_id,
           car_id,
@@ -43,7 +38,7 @@ class AuthService {
           address_id: 1,
           down_payment: 1000,
           payment_id: 101,
-          created_at: new Date(),
+          // created_at: new Date(),
           status: "pending",
         },
       });

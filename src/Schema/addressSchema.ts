@@ -31,6 +31,6 @@ const UserAddressSchema = new Schema({
   },
 });
 
-export const UserAddress = mongoose.model('UserAddress', UserAddressSchema);
+export const Address = mongoose.model('Address', UserAddressSchema);
 
-module.exports = UserAddress;
+module.exports = Address;
