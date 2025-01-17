@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { PAYMENT_MODE, PAYMENT_STATUS } from '../interface';
 
 
 const Schema = mongoose.Schema;
@@ -16,19 +17,12 @@ const UserPaymentSchema = new Schema({
   },
   method: {
     type: String,
-    enum: ['CREDIT_CARD', 'DEBIT_CARD', 'NET_BANKING', 'UPI', 'CASH'], // Replace with actual PaymentMode values
+    enum: PAYMENT_MODE, // Replace with actual PaymentMode values
     required: true,
   },
   status: {
     type: String,
-    enum: [
-      'INITIATE',
-      'SUCCESS',
-      'FAILED',
-      'PENDING',
-      'REFUND_INITIATE',
-      'REFUNDED',
-    ], // PaymentStatus values
+    enum: PAYMENT_STATUS, // PaymentStatus values
     required: true,
   },
   amount: {

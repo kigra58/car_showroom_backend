@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { BOOKING_STATUS } from '../interface';
 
 const Schema = mongoose.Schema;
 
@@ -33,7 +34,7 @@ const BookingSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ['PENDING', 'CONFIRMED', 'CANCELLED'], // Replace with actual BookingStatus enum values
+    enum: BOOKING_STATUS, // Replace with actual BookingStatus enum values
     required: true,
   },
 });
