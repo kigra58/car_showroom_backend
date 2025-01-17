@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import { BOOKING_STATUS } from '../interface';
+import { BOOKING_STATUS } from '../constant';
+
 
 const Schema = mongoose.Schema;
 

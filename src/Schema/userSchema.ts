@@ -1,6 +1,8 @@
 
 
 import mongoose from 'mongoose';
+import { USER_ROLE } from '../constant';
+
 
 
 const Schema = mongoose.Schema;
@@ -39,18 +41,18 @@ const UserSchema = new Schema({
   account_type: {
     type: String,
     required: true,
-    enum: ['STANDARD', 'PREMIUM', 'ADMIN'], // Replace with actual account types as needed
+    enum: USER_ROLE, // Replace with actual account types as needed
   },
   address: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'UserAddress', // Refer to the UserAddress schema
+      ref: 'Address', // Refer to the UserAddress schema
     },
   ],
   UserPayment: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'UserPayment', // Refer to the UserPayment schema
+      ref: 'Payment', // Refer to the UserPayment schema
     },
   ],
 });

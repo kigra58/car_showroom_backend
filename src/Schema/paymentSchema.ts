@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import { PAYMENT_MODE, PAYMENT_STATUS } from '../interface';
+import { PAYMENT_MODE, PAYMENT_STATUS } from '../constant';
+
 
 
 const Schema = mongoose.Schema;
@@ -39,6 +40,6 @@ const UserPaymentSchema = new Schema({
   },
 });
 
-export const UserAddress = mongoose.model('Payment', UserPaymentSchema);
+export const Payment = mongoose.model('Payment', UserPaymentSchema);
 
-module.exports = UserAddress;
+module.exports = Payment;

@@ -9,7 +9,7 @@ export interface IAPIResponse{
 
 
 
-interface IPersonalInfo {
+export interface IPersonalInfo {
   first_name: string;
   last_name: string;
   phone: string;
@@ -18,7 +18,7 @@ interface IPersonalInfo {
   role: string;
 }
 
-interface IAddres{
+export interface IAddres{
     address_line1:string,
     landmark:string,
     city:string,
@@ -26,7 +26,7 @@ interface IAddres{
     zip_code:string
 }
 
-interface IAdditionalInfo{
+export interface IAdditionalInfo{
     agent_id:number, // user id whos account type is agent
     car_model:string,
     manufacture_year:string,
@@ -35,7 +35,7 @@ interface IAdditionalInfo{
     payment_mode:string,
 }
 
-interface ICarDetails{
+export interface ICarDetails{
     id:number, // car id
     model:string,
     color:string,
@@ -64,28 +64,3 @@ export interface IBooking{
 }
 
 
-export enum PAYMENT_STATUS {
-    INITIATE,
-    SUCCESS,
-    FAILED,
-    PENDING,
-    REFUND_INITIATE,
-    REFUNDED
-}
-
-export enum PAYMENT_MODE {
-    CASH,
-    CREDIT_CARD,
-    DEBIT_CARD,
-    NET_BANKING,
-    UPI
-}
-
-export enum BOOKING_STATUS {
-    SUCCESS,
-    FAILED,
-    PENDING,
-    REFUND_INITIATE,
-    REFUNDED,
-    CANCELLED
-}

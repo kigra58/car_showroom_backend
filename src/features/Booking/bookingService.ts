@@ -1,3 +1,4 @@
+import { PAYMENT_STATUS } from "../../constant";
 import { IAPIResponse, IBooking } from "../../interface";
 import { Address } from "../../Schema/addressSchema";
 import { Booking } from "../../Schema/bookingSchema";
@@ -11,7 +12,7 @@ class AuthService {
         message: "Please provide all required fields",
         success: false,
       });
-    }
+    };
 
     try {
       const existAddress =await Booking.find({ user_id, ...address });
@@ -39,7 +40,7 @@ class AuthService {
           down_payment: 1000,
           payment_id: 101,
           // created_at: new Date(),
-          status: "pending",
+          status: PAYMENT_STATUS.SUCCESS,
         },
       });
 
