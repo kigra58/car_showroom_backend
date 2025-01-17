@@ -1,47 +1,46 @@
-import { PrismaClient } from "@prisma/client";
-import {hash,genSalt, compare} from 'bcryptjs'
+import { hash, genSalt, compare } from 'bcryptjs';
 import { generateToken } from "../../middleware/generateToken";
 import { IAPIResponse } from "../../interface";
-const prisma = new PrismaClient();
+import { User } from '../../Schema/userSchema';
+// Import the User model
+
 class AuthService {
   private response: IAPIResponse | undefined;
+
   /**
    * SIGNUP
    */
-  async signup({firstName,lastName,email,password,phone,account_type}:
-    {firstName:string;lastName:string;email:string,password:string,phone:string,account_type:string}) {
+  async signup({ firstName, lastName, email, password, phone, account_type }: { firstName: string; lastName: string; email: string, password: string, phone: string, account_type: string }) {
     try {
-       if(firstName && lastName && email && password){
-         const newUser=await prisma.user.create({
-           data:{
-             first_name:firstName,
-             last_name:lastName,
-             email,
-             password:await hash(password,await genSalt(10)),
-             phone,
-             account_type
-            }
-          });
-          if(newUser){
-          this.response={
-          success:true,
-          message:"User Register Successfully",
-          data:[newUser]
+      if (firstName && lastName && email && password) {
+        const newUser = await User.create({
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          password: await hash(password, await genSalt(10)),
+          phone,
+          account_type
+        });
+        if (newUser) {
+          this.response = {
+            success: true,
+            message: "User Register Successfully",
+            data: [newUser]
+          };
+        } else {
+          this.response = {
+            success: false,
+            message: "Unable to register new user",
+          }
         };
-      }else{
-        this.response={
-          success:false,
-          message:"Unable to register new user",
+      } else {
+        this.response = {
+          success: false,
+          message: "Unable to get payload",
+          statusCode: 400,
+          data: []
         }
       };
-       }else{
-        this.response={
-       success:false,
-       message:"Unable to get payload",
-       statusCode:400,
-        data:[]
-       }
-     };
     } catch (error) {
       console.error(error);
     };
@@ -51,55 +50,43 @@ class AuthService {
   /**
    * LOGIN
    */
-  async login({email,password}:{email:string;password:string}) {
+  async login({ email, password }: { email: string; password: string }) {
     try {
-      
-      if(email && password){
-        const existUser=await prisma.user.findUnique({
-          where:{email},
-        });
-        
-        if(existUser){   
-          const allData=await prisma.user.findFirst({
-            where:{id:existUser.id},
-            relationLoadStrategy: "join",
-            include: {
-              address: true,
-            },
-          })
-          console.log("allDataallDataallData",allData);
-          
-          const isVarify=await compare(password,await hash(password,await genSalt(10)));
-          if(isVarify){
-            const token=generateToken(`${existUser.id}`,existUser.email);
-            if(token &&token!==""){
-              this.response={
-                success:true,
-                message:"User login successfully",
-                data:[{...allData,token}]
+      if (email && password) {
+        const existUser = await User.findOne({ email });
+
+        if (existUser) {
+          const isVarify = await compare(password, existUser.password);
+          if (isVarify) {
+            const token = generateToken(`${existUser._id}`, existUser.email);
+            if (token && token !== "") {
+              this.response = {
+                success: true,
+                message: "User login successfully",
+                data: [{ ...existUser.toObject(), token }]
               };
-            }else{
-              this.response={
-                success:false,
-                message:"Token not generated"
+            } else {
+              this.response = {
+                success: false,
+                message: "Token not generated"
               }
             }
-          }else{
-            this.response={
-              success:false,
-              message:"Credentials not match"
+          } else {
+            this.response = {
+              success: false,
+              message: "Credentials not match"
             }
           };
-        }else{
-          this.response={
-            success:false,
-            message:"User not register"
+        } else {
+          this.response = {
+            success: false,
+            message: "User not register"
           };
         };
-      }else{
-        this.response={
-          success:false,
-          message:"Unable to get payload"
+      } else {
+        this.response = {
+          success: false,
+          message: "Unable to get payload"
         }
       };
     } catch (error) {
@@ -111,16 +98,14 @@ class AuthService {
   /**
    * FORGOT PASSWORD
    */
-  async forgotPassword({email}:{email:string}) {
+  async forgotPassword({ email }: { email: string }) {
     try {
-      const existUser=await prisma.user.findUnique({
-        where:{email}
-      });
+      const existUser = await User.findOne({ email });
 
-      if(existUser){
-
-      }else{
-        
+      if (existUser) {
+        // Implement forgot password logic here
+      } else {
+        // Handle user not found case
       }
 
     } catch (error) {
@@ -132,35 +117,29 @@ class AuthService {
   /**
    * CHANGE PASSWORD
    */
-  async changePassword({newPassword,userId,oldPassword}:{newPassword:string;oldPassword:string,userId:number}) {
+  async changePassword({ newPassword, userId, oldPassword }: { newPassword: string; oldPassword: string, userId: number }) {
     try {
-      const existUser=await prisma.user.findUnique({
-        where:{id:Number(userId)}
-      });
-      if(existUser){
-        const isVarify=await compare(oldPassword,await hash(existUser.password,await genSalt(10)));
-        if(isVarify){
-          const updatePassword=await prisma.user.update({
-            where:{id:Number(userId)},
-            data:{
-              password:await hash(newPassword,await genSalt(10))
-            }
-          });
-          if(updatePassword){
-            this.response={
-              success:true,
-              message:"password changed successfully"
+      const existUser = await User.findById(userId);
+      if (existUser) {
+        const isVarify = await compare(oldPassword, existUser.password);
+        if (isVarify) {
+          existUser.password = await hash(newPassword, await genSalt(10));
+          const updatePassword = await existUser.save();
+          if (updatePassword) {
+            this.response = {
+              success: true,
+              message: "password changed successfully"
             };
-          }else{
-            this.response={
-              success:false,
-              message:"unable to change password"
+          } else {
+            this.response = {
+              success: false,
+              message: "unable to change password"
             }
           }
-        }else{
-          this.response={
-            success:false,
-            message:"Credentials not match"
+        } else {
+          this.response = {
+            success: false,
+            message: "Credentials not match"
           }
         };
       }

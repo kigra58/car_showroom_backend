@@ -62,3 +62,29 @@ export interface IBooking{
     status:string,
     booking_date:Date,
 }
+
+
+enum PaymentStatus {
+    initiate,
+    success,
+    failled,
+    pending,
+    refund_intiate,
+    refunded
+}
+
+enum PaymentMode {
+    CASH,
+    CREDIT_CARD,
+    DEBIT_CARD,
+    NET_BANKING,
+    UPI
+}
+
+enum BookingStatus {
+    success,
+    failled,
+    pending,
+    refund_intiate,
+    refunded
+  }
