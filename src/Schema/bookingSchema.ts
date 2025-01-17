@@ -29,15 +29,12 @@ const BookingSchema = new Schema({
     type: Number,
     required: true,
   },
-  created_at: {
-    type: Date,
-    default: Date.now,
-  },
   status: {
     type: String,
     enum: BOOKING_STATUS, // Replace with actual BookingStatus enum values
     required: true,
   },
+  timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });
 
 export const Booking = mongoose.model('Booking', BookingSchema);

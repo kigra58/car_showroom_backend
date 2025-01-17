@@ -30,15 +30,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  created_at: {
-    type: Date,
-    default: Date.now,
-  },
-  updated_at: {
-    type: Date,
-    default: Date.now,
-  },
-  account_type: {
+  user_role: {
     type: String,
     required: true,
     enum: USER_ROLE, // Replace with actual account types as needed
@@ -55,6 +47,7 @@ const UserSchema = new Schema({
       ref: 'Payment', // Refer to the UserPayment schema
     },
   ],
+  timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });
 
 export const User = mongoose.model('User', UserSchema);

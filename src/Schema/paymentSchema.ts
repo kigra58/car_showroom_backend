@@ -30,14 +30,7 @@ const UserPaymentSchema = new Schema({
     type: Number,
     required: true,
   },
-  created_at: {
-    type: Date,
-    default: Date.now,
-  },
-  updated_at: {
-    type: Date,
-    default: Date.now,
-  },
+  timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });
 
 export const Payment = mongoose.model('Payment', UserPaymentSchema);
