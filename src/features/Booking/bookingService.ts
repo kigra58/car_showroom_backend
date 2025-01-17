@@ -17,7 +17,7 @@ class AuthService {
     try {
       const existAddress =await Booking.find({ user_id, ...address });
 
-      if (!existAddress) {
+      if (!existAddress || !existAddress.length) {
         await Address.create({
           data: {
             user_id,
@@ -31,7 +31,7 @@ class AuthService {
         });
       }
 
-      const newBooking = await Booking.create({
+      const data = await Booking.create({
         data: {
           user_id,
           car_id,
@@ -39,16 +39,15 @@ class AuthService {
           address_id: 1,
           down_payment: 1000,
           payment_id: 101,
-          // created_at: new Date(),
           status: PAYMENT_STATUS.SUCCESS,
         },
       });
 
-      if (newBooking) {
+      if (data && data._id) {
          this.response = {
           message: "Booking created successfully",
           success: true,
-          data: newBooking,
+          data
         };
       } else {
          this.response = {
