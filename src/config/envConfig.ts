@@ -11,19 +11,19 @@ type EnvConfig = {
 export const env: { [key: string]: EnvConfig } = {
   local: {
     profile: "default",
-    port: 3001,
+    port: 3021,
     region: "us-east-1",
     secretManagerKey: "",
     bucket: ""
   },
   development: {
-    port: 3001,
+    port: 3021,
     region: "us-east-1",
     secretManagerKey: "",
     bucket: ""
   },
   production: {
-    port: 3001,
+    port: 3021,
     region: "us-east-1",
     secretManagerKey: "",
     bucket: ""

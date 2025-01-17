@@ -43,13 +43,13 @@ const UserSchema = new Schema({
   address: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Address', // Refer to the UserAddress schema
+      ref: 'Address', // Refer to the Address schema
     },
   ],
   UserPayment: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Payment', // Refer to the UserPayment schema
+      ref: 'Payment', // Refer to the Payment schema
     },
   ],
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },

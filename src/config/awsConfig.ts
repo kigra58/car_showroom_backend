@@ -13,18 +13,18 @@ export const getSecretKeys = async (
   new Promise((resolve, reject) => {
     if (!secretKeys || isForceSync) {
       const client = new SecretsManager({
-        region: env.region,
+        region: env.local.region,
       });
 
       client.getSecretValue(
         {
-          SecretId: env.secretManagerKey,
+          SecretId: env.local.secretManagerKey,
         },
-        (err: Error, { SecretString }) => {
+        (err: Error, { SecretString }:any) => {
           if (err) {
             reject(err);
           } else {
-            secretKeys = JSON.parse(SecretString);
+            secretKeys = JSON.parse(SecretString||"{}");
             resolve(secretKeys);
           }
         }
@@ -35,5 +35,5 @@ export const getSecretKeys = async (
   });
 
 export default {
-	s3: new S3({ region: env.bucket }),
+	s3: new S3({ region: env.local.bucket }),
 };
