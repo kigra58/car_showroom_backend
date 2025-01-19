@@ -9,7 +9,8 @@ import BookingService from "./inquiryService";
  */
 export const newInquiry = async (req: Request, res: Response) => {
   const response = await BookingService.newInquiry(req.body);
-  return res.status(200).send(response);
+  return res.status(response?.statusCode??200).send(response);
+
 };
 
 

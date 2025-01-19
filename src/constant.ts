@@ -5,7 +5,7 @@ export enum PAYMENT_STATUS {
     PENDING,
     REFUND_INITIATE,
     REFUNDED
-}
+};
 
 export enum PAYMENT_MODE {
     CASH,
@@ -13,7 +13,7 @@ export enum PAYMENT_MODE {
     DEBIT_CARD,
     NET_BANKING,
     UPI
-}
+};
 
 export enum BOOKING_STATUS {
     INITIATE,
@@ -23,7 +23,7 @@ export enum BOOKING_STATUS {
     REFUND_INITIATE,
     REFUNDED,
     CANCELLED
-}
+};
 
 export enum USER_ROLE {
     CRM,
@@ -31,10 +31,21 @@ export enum USER_ROLE {
     GM,
     SM,
     CA
-}
+};
 
 export enum INQUIRY_STATUS {
     WARM,
     COLD,
     HOT
-}
+};
+
+
+export enum ORGNIZATION_PERMISSION {
+    INQUIRY,
+    BOOKING,
+};
+
+export enum DEPARTMENT_PERMISSION {
+    INQUIRY,
+    BOOKING,
+};

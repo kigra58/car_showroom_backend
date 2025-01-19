@@ -9,7 +9,7 @@ import BookingService from "./bookingService";
  */
 export const newBooking = async (req: Request, res: Response) => {
   const response = await BookingService.newBooking(req.body);
-  return res.status(200).send(response);
+  return res.status(response?.statusCode??200).send(response);
 };
 
 
@@ -21,5 +21,6 @@ export const newBooking = async (req: Request, res: Response) => {
  */
 export const updateBooking = async (req: Request, res: Response) => {
   const response = await BookingService.updateBooking(req.body);
-  return res.status(200).send(response);
+  return res.status(response?.statusCode??200).send(response);
+
 };

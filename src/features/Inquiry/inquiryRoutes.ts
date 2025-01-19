@@ -3,7 +3,9 @@ import {Router} from "express";
 export const inquiryRoute=Router()
 
 
-inquiryRoute.post("/new-inquiry");
+inquiryRoute.post("/add");
+inquiryRoute.post("/list");
+inquiryRoute.post("/update");
 
 
 

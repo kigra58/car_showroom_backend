@@ -9,7 +9,7 @@ import SoldCarService from "./soldCarService";
  */
 export const addNew = async (req: Request, res: Response) => {
   const response = await SoldCarService.addNew(req.body);
-  return res.status(200).send(response);
+  return res.status(response?.statusCode??200).send(response);
 };
 
 /**
@@ -32,7 +32,7 @@ export const getAllSoldCars = async (req: Request, res: Response) => {
 
 export const getSoldCarById = async (req: Request, res: Response) => {
   const response = await SoldCarService.getSelledCarById(req.params.id);
-  return res.status(200).send(response);
+  return res.status(response?.statusCode??200).send(response);
 };
 
 /**
@@ -43,5 +43,6 @@ export const getSoldCarById = async (req: Request, res: Response) => {
  */
 export const getSoldCarByAgent = async (req: Request, res: Response) => {
   const response = await SoldCarService.getCarByAgentId(req.params.id);
-  return res.status(200).send(response);
+  return res.status(response?.statusCode??200).send(response);
+
 };

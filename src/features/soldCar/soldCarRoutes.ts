@@ -1,12 +1,12 @@
 import {Router} from "express";
 
-export const selledCarRoute=Router()
+export const soldCarRoute=Router()
 
 
-selledCarRoute.post("/list");
-selledCarRoute.post("/add");
-selledCarRoute.get("/get/:id");
-selledCarRoute.get("/agent/:id");
+soldCarRoute.post("/list");
+soldCarRoute.post("/add");
+soldCarRoute.get("/get/:id");
+soldCarRoute.get("/agent/:id");
 
 
 
