@@ -35,4 +35,4 @@ const UserPaymentSchema = new Schema({
 
 export const Payment = mongoose.model('Payment', UserPaymentSchema);
 
-module.exports = Payment;
+// module.exports = Payment;

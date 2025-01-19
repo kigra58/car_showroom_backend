@@ -46,15 +46,11 @@ const UserSchema = new Schema({
       ref: 'Address', // Refer to the Address schema
     },
   ],
-  UserPayment: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Payment', // Refer to the Payment schema
-    },
-  ],
+
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
+  
 });
 
 export const User = mongoose.model('User', UserSchema);
 
-module.exports = User;
+// module.exports = User;

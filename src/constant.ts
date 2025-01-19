@@ -16,6 +16,7 @@ export enum PAYMENT_MODE {
 }
 
 export enum BOOKING_STATUS {
+    INITIATE,
     SUCCESS,
     FAILED,
     PENDING,
@@ -25,8 +26,15 @@ export enum BOOKING_STATUS {
 }
 
 export enum USER_ROLE {
-    USER,
-    AGENT,
+    CRM,
     TL,
-    GM
+    GM,
+    SM,
+    CA
+}
+
+export enum INQUIRY_STATUS {
+    WARM,
+    COLD,
+    HOT
 }
