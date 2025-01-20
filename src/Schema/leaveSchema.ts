@@ -1,10 +1,17 @@
 import mongoose, { Schema } from "mongoose";
-import { LEAVE_STATUS, LEAVE_TYPE } from "../constant";
+import {LEAVE_DURATION, LEAVE_STATUS } from "../constant";
 const leaveSchema = new mongoose.Schema({
+  employee_id: {
+    type: Schema.Types.ObjectId,
+    ref: "Employee",
+    required: true,
+  },
+
   start_date: {
     type: Date,
     required: true,
   },
+
   end_date: {
     type: Date,
     required: true,
@@ -16,21 +23,15 @@ const leaveSchema = new mongoose.Schema({
     required: true,
   },
 
-  employee_id: {
-    type: Schema.Types.ObjectId,
-    ref: "Employee",
+  description: {
+    type: String,
     required: true,
   },
 
-   reason: {
-        type: String,
-        required: true,
-    },
-
-   notifiy_to: [
+  notifiy_to: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Empoyee', 
+      ref: "Empoyee",
       required: true,
     },
   ],
@@ -38,17 +39,29 @@ const leaveSchema = new mongoose.Schema({
   // category: number of days
   leave_balance: {
     type: Object,
-    required: false
+    required: false,
   },
 
-  status:{
+  duration: {
+    type: String,
+    required: true,
+    enum: LEAVE_DURATION,
+    default: LEAVE_DURATION.FULL_DAY,
+  },
+
+  document_url: {
+    type: String,
+    required: false,
+  },
+
+  status: {
     type: String,
     required: true,
     default: LEAVE_STATUS.PENDING,
-    enum:LEAVE_STATUS
+    enum: LEAVE_STATUS,
   },
 
-   timestamps: { createdAt: "created_at" }, 
+  timestamps: { createdAt: "created_at" },
 });
 
 export const Leave = mongoose.model("Leave", leaveSchema);

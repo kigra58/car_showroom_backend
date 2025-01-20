@@ -66,3 +66,10 @@ export enum LEAVE_STATUS{
     REJECTED
 };
 
+
+export enum LEAVE_DURATION{
+    FULL_DAY,
+    FIRST_HALF,
+    SECOND_HALF
+} 
+
