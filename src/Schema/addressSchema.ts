@@ -2,9 +2,9 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const UserAddressSchema = new Schema({
-  user_id: {
+  employee_id: {
     type: Schema.Types.ObjectId,
-    ref: 'User', // Reference to the User schema
+    ref: "Employee", // Reference to the User schema
     required: true,
   },
   line1: {

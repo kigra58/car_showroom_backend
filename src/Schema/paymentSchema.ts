@@ -18,12 +18,12 @@ const UserPaymentSchema = new Schema({
   },
   method: {
     type: String,
-    enum: PAYMENT_MODE, // Replace with actual PaymentMode values
+    enum: PAYMENT_MODE, 
     required: true,
   },
   status: {
     type: String,
-    enum: PAYMENT_STATUS, // PaymentStatus values
+    enum: PAYMENT_STATUS, 
     required: true,
   },
   amount: {

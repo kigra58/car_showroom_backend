@@ -10,8 +10,6 @@ const BookingSchema = new Schema({
     required: true,
   },
 
-
-
   aadhar_id: {
     type: String,
     required: true,

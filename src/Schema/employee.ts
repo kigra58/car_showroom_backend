@@ -26,6 +26,13 @@ const employeeSchema = new mongoose.Schema({
     required: true,
   },
 
+  address: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Address', 
+    },
+  ],
+
   timestamps: { createdAt: "created_at" },
 });
 export const Car = mongoose.model("Employee", employeeSchema);

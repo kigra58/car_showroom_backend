@@ -34,7 +34,7 @@ const UserSchema = new Schema({
   user_role: {
     type: String,
     required: true,
-    enum: USER_ROLE, // Replace with actual account types as needed
+    enum: USER_ROLE, 
   },
   profile_image: {
     type: String,
