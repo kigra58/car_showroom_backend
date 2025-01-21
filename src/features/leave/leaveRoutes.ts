@@ -1,10 +1,13 @@
 import {Router} from "express";
 
-export const carRoute=Router()
+export const leaveRoute=Router()
 
 
-carRoute.post("/list");
-carRoute.put("/update");
+leaveRoute.post("/list");
+leaveRoute.get("/request/:id");
+leaveRoute.post("/request");
+leaveRoute.put("/cancel");
+leaveRoute.get("/balance/:id");
 
 
 

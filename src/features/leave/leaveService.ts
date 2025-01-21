@@ -106,9 +106,10 @@ class LeaveService {
     }
 
     return this.response;
-  }
+  };
 
- 
+
+
 }
 
 export default new LeaveService();
