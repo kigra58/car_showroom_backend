@@ -23,4 +23,4 @@ const leaveCategorySchema = new mongoose.Schema({
 });
 
 
-export const Leave = mongoose.model("LeaveCategory", leaveCategorySchema);
+export const LeaveCategory = mongoose.model("LeaveCategory", leaveCategorySchema);

@@ -45,4 +45,4 @@
     
  });
 
- export const Car = mongoose.model("Client", clientSchema);
+ export const Client = mongoose.model("Client", clientSchema);

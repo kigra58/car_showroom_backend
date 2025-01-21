@@ -35,4 +35,4 @@ const employeeSchema = new mongoose.Schema({
 
   timestamps: { createdAt: "created_at" },
 });
-export const Car = mongoose.model("Employee", employeeSchema);
+export const Employee = mongoose.model("Employee", employeeSchema);

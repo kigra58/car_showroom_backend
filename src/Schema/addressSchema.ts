@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const UserAddressSchema = new Schema({
+const EmployeeAddressSchema = new Schema({
   employee_id: {
     type: Schema.Types.ObjectId,
     ref: "Employee", // Reference to the User schema
@@ -31,6 +31,6 @@ const UserAddressSchema = new Schema({
   },
 });
 
-export const Address = mongoose.model('Address', UserAddressSchema);
+export const EmployeeAddress = mongoose.model('EmployeeAddress', EmployeeAddressSchema);
 
 
